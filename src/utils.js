@@ -1,4 +1,4 @@
-const ENDPOINTS = ["sum", "find"];
+const ENDPOINTS = ["sum", "query-balances"];
 
 const sumOfBalances = (balances) => {
   const sum = balances.reduce((prev, current) => {
@@ -8,19 +8,24 @@ const sumOfBalances = (balances) => {
 };
 
 const highestBalance = (balances) => {
-  const max = balances.reduce((prev, current) => {
-    return prev.balance > current.balance ? prev.address : current.address;
-  });
-
-  return max;
+  const sortedBalances = balances.sort(dynamicSort("balance"));
+  return sortedBalances[sortedBalances.length - 1];
 };
 
 const lowestBalance = (balances) => {
-  const min = balances.reduce((prev, current) => {
-    return prev.balance < current.balance ? prev.address : current.address;
-  });
+  const sortedBalances = balances.sort(dynamicSort("balance"));
+  return sortedBalances[0];
+};
 
-  return min;
+const dynamicSort = (property) => {
+  return function (a, b) {
+    if (a[property] < b[property]) {
+      return -1;
+    } else if (a[property] > b[property]) {
+      return 1;
+    }
+    return 0;
+  };
 };
 
 const isValidEndpoint = (endpoint) => {

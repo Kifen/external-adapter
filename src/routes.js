@@ -15,4 +15,14 @@ router.post("/sum", (req, res) => {
   );
 });
 
+router.post("/query-balances", (req, res) => {
+  createRequest(
+    `${req.body.data.query}`,
+    (status, result) => {
+      res.status(status).json(result);
+    },
+    req.body
+  );
+});
+
 module.exports = router;

@@ -7,7 +7,7 @@ const customError = (data) => {
 };
 
 const customParams = {
-  base: ["base"],
+  query: ["query", "q"],
   endpoint: false,
 };
 
@@ -30,15 +30,16 @@ const createRequest = (action, callback, input = {}) => {
       const data = response.data;
       switch (action) {
         case "sum":
-          const balances = data.filter((account) => account.balance);
           result = sumOfBalances(data);
-          console.log("RR: ", result);
           break;
-        case "highest_balance":
+        case "largest":
+          console.log("INSIDE...")
           result = highestBalance(data);
+          console.log("LARGEST: ", result);
           break;
-        case "lowest_balance":
+        case "smallest":
           result = lowestBalance(data);
+          console.log("SMALLEST: ", result);
           break;
       }
 
@@ -48,7 +49,6 @@ const createRequest = (action, callback, input = {}) => {
       });
     })
     .catch((error) => {
-      console.log("FAILED...");
       callback(500, Requester.errored(jobRunID, error));
     });
 };
