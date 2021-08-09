@@ -2,3 +2,9 @@
 node_modules/
 package-lock.json
 *.zip
+node_modules
+.env
+
+#Hardhat files
+cache
+artifacts
