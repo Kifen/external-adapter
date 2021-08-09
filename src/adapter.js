@@ -30,7 +30,7 @@ const createRequest = (action, callback, input = {}) => {
       const data = response.data;
       switch (action) {
         case "sum-balances":
-          result = sumOfBalances(data);
+          result = sumOfBalances(data).toString();
           break;
         case "highest":
           result = highestBalance(data);

@@ -47,19 +47,21 @@ contract AccountCalc is ChainlinkClient {
     return req;
   }
 
-  function fulfillSumBalances(bytes32 _requestId, uint256 _sum) public recordChainlinkFulfillment(_requestId) {
-    sumBalances = _sum;
-    emit RequestSumBalances(_requestId, _sum);
+  function fulfillSumBalances(bytes32 _requestId, bytes32 _sum) public recordChainlinkFulfillment(_requestId) {
+    sumBalances = uint256(_sum);
+    emit RequestSumBalances(_requestId, sumBalances);
   }
 
-  function fulfillLowestBalance(bytes32 _requestId, address _lowestBalance) public recordChainlinkFulfillment(_requestId) {
-    lowestBalance = _lowestBalance;
-    emit RequestLowestBalance(_requestId, _lowestBalance);
+  function fulfillLowestBalance(bytes32 _requestId, bytes32 _lowestBalance) public recordChainlinkFulfillment(_requestId) {
+    address _addr = address(uint160(uint256(_lowestBalance)));
+    lowestBalance = _addr;
+    emit RequestLowestBalance(_requestId, _addr);
   }
 
-   function fulfillHighestBalance(bytes32 _requestId, address _highestBalance) public recordChainlinkFulfillment(_requestId) {
-    highestBalance = _highestBalance;
-    emit RequestHighestBalance(_requestId, _highestBalance);
+   function fulfillHighestBalance(bytes32 _requestId, bytes32 _highestBalance) public recordChainlinkFulfillment(_requestId) {
+    address _addr = address(uint160(uint256(_highestBalance)));
+    highestBalance = _addr;
+    emit RequestHighestBalance(_requestId, _addr);
   }
 
 
@@ -74,4 +76,12 @@ contract AccountCalc is ChainlinkClient {
       result := mload(add(source, 32))
     }
   }
+
+  //  function bytes32ToStr(bytes32 _bytes32) public pure returns (string memory) {
+  //       bytes memory bytesArray = new bytes(32);
+  //       for (uint256 i; i < 32; i++) {
+  //           bytesArray[i] = _bytes32[i];
+  //           }
+  //       return string(bytesArray);
+  //   }
 }
