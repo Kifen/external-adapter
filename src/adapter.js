@@ -32,10 +32,10 @@ const createRequest = (action, callback, input = {}) => {
         case "sum-balances":
           result = sumOfBalances(data);
           break;
-        case "largest":
+        case "highest":
           result = highestBalance(data);
           break;
-        case "smallest":
+        case "lowest":
           result = lowestBalance(data);
           break;
       }

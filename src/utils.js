@@ -9,12 +9,12 @@ const sumOfBalances = (balances) => {
 
 const highestBalance = (balances) => {
   const sortedBalances = balances.sort(dynamicSort("balance"));
-  return sortedBalances[sortedBalances.length - 1];
+  return sortedBalances[sortedBalances.length - 1].address;
 };
 
 const lowestBalance = (balances) => {
   const sortedBalances = balances.sort(dynamicSort("balance"));
-  return sortedBalances[0];
+  return sortedBalances[0].address;
 };
 
 const dynamicSort = (property) => {
