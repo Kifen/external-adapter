@@ -42,7 +42,9 @@ const createRequest = (action, callback, input = {}) => {
 
       callback(response.status, {
         id: jobRunID,
-        data: { answer: result },
+        data: { result },
+        result,
+        statusCode: response.status,
       });
     })
     .catch((error) => {

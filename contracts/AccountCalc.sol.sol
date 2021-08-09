@@ -27,7 +27,6 @@ contract AccountCalc is ChainlinkClient {
   function requestSumBalances() public {
      Chainlink.Request memory req = buildChainlinkRequest(jobId, address(this), this.fulfillSumBalances.selector);
      req.add("endpoint", "sum-balances");
-     req.add("copyPath", "answer");
      sendChainlinkRequestTo(oracle, req, fee);
   }
 
@@ -45,7 +44,6 @@ contract AccountCalc is ChainlinkClient {
     Chainlink.Request memory req = buildChainlinkRequest(jobId, address(this), _selector);
     req.add("endpoint", "query-balances");
     req.add("query", _query);
-    req.add("copyPath", "answer");
     return req;
   }
 

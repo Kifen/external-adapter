@@ -19,6 +19,7 @@ router.post("/query-balances", (req, res) => {
   createRequest(
     `${req.body.data.query}`,
     (status, result) => {
+      console.log("Result: ", result);
       res.status(status).json(result);
     },
     req.body

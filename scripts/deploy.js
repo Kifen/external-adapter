@@ -14,15 +14,20 @@ async function main() {
   // await hre.run('compile');
 
   // We get the contract to deploy
-  const decimals = hre.ethers.BigNumber.from(10).pow(hre.ethers.BigNumber.from(18))
-  const fee = hre.ethers.BigNumber.from(1).mul(decimals)
-  console.log(fee.toHexString())
-  // const AccountCalc = await hre.ethers.getContractFactory("AccountCalc");
-  // const accountCalc = await Greeter.deploy(process.env.JOB_ID, process.env.ORACLE, fee);
+  const decimals = hre.ethers.BigNumber.from(10).pow(
+    hre.ethers.BigNumber.from(18)
+  );
+  const fee = hre.ethers.BigNumber.from(1).mul(decimals);
+  const AccountCalc = await hre.ethers.getContractFactory("AccountCalc");
+  const accountCalc = await AccountCalc.deploy(
+    process.env.JOB_ID,
+    process.env.ORACLE,
+    fee
+  );
 
-  // await greeter.deployed();
+  await accountCalc.deployed();
 
-  // console.log("Greeter deployed to:", greeter.address);
+  console.log("AccountCalc deployed to:", accountCalc.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
