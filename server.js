@@ -22,11 +22,4 @@ app.use((req, res, next) => {
 
 app.use("/", routes);
 
-// app.post("/", (req, res) => {
-//   const endpoint = req.body.data.endpoint;
-//   if (isValidEndpoint(endpoint)) {
-//     createRequest;
-//   }
-// });
-
 app.listen(port, () => console.log(`Listening on port ${port}!`));

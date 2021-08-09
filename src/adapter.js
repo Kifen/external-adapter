@@ -29,17 +29,14 @@ const createRequest = (action, callback, input = {}) => {
     .then((response) => {
       const data = response.data;
       switch (action) {
-        case "sum":
+        case "sum-balances":
           result = sumOfBalances(data);
           break;
         case "largest":
-          console.log("INSIDE...")
           result = highestBalance(data);
-          console.log("LARGEST: ", result);
           break;
         case "smallest":
           result = lowestBalance(data);
-          console.log("SMALLEST: ", result);
           break;
       }
 

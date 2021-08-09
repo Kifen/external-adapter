@@ -1,4 +1,4 @@
-const ENDPOINTS = ["sum", "query-balances"];
+const ENDPOINTS = ["sum-balances", "query-balances"];
 
 const sumOfBalances = (balances) => {
   const sum = balances.reduce((prev, current) => {

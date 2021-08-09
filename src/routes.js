@@ -4,9 +4,9 @@ const { sumOfBalances, highestBalance, lowestBalance } = require("./utils");
 
 const router = express.Router();
 
-router.post("/sum", (req, res) => {
+router.post("/sum-balances", (req, res) => {
   createRequest(
-    "sum",
+    "sum-balances",
     (status, result) => {
       console.log("Result: ", result);
       res.status(status).json(result);
